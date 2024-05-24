@@ -19,6 +19,15 @@ monthly_challenges = {
     "december": None,
 }
 
+
+def index(request):
+    months = list(monthly_challenges.keys())
+
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
+
+
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys())
 
@@ -40,13 +49,6 @@ def monthly_challenge(request, month):
     except:
         return HttpResponseNotFound("<h1>Month not supported</h1>")
     
-
-def index(request):
-    months = list(monthly_challenges.keys())
-
-    return render(request, "challenges/index.html", {
-        "months": months
-    })
 
 
 
