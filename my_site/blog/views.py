@@ -4,18 +4,21 @@ from django.http import HttpResponse, Http404
 
 # 1. Create View
 # 2. Create URL paths, linking views.py with urls.py
-# 3. Link App URL with Project URL
-# 4. Create HTML page on templates folder
-# 5. Add app pto installed apps on settings.py
+# 3. Create HTML page on templates folder
+# 4. Reference App.urls file on Project.urls file
+# 5. Add app to installed apps on Project settings.py
 
 
 def index(request):
-    # try:
-    #     return render(request, "blog/index.html")
-    # except:
-    #     raise Http404()
-    return render(request, "blog/index.html")
+    try:
+        return render(request, "blog/index.html")
+    except:
+        raise Http404()
 
 
-
+def posts(request):
+    try:
+        return render(request, "blog/posts.html")
+    except:
+        raise Http404()
 
