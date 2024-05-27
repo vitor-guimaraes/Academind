@@ -10,17 +10,17 @@ from django.http import HttpResponse, Http404
 # 6. Add BASE_DIR to settings file to pick up global templates
 
 def index(request):
-    # try:
+    try:
         return render(request, "blog/index.html")
-    # except:
-    #     raise Http404()
+    except:
+        raise Http404()
 
 
 def posts(request):
-    # try:
+    try:
         return render(request, "blog/posts.html")
-    # except:
-    #     raise Http404()
+    except:
+        raise Http404()
 
 
 def detail_post(request, slug):
