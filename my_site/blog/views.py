@@ -17,10 +17,10 @@ def index(request):
 
 
 def posts(request):
-    try:
+    # try:
         return render(request, "blog/posts.html")
-    except:
-        raise Http404()
+    # except:
+    #     raise Http404()
 
 
 def detail_post(request, slug):
