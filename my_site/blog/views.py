@@ -91,14 +91,18 @@ def index(request):
 
 def posts(request):
     try:
-        return render(request, "blog/posts.html")
+        return render(request, "blog/posts.html",{
+            "posts": all_posts})
     except:
         raise Http404()
 
 
 def detail_post(request, slug):
     try:
-        return render(request, "blog/details.html")
+        identified_post = next(post for post in all_posts if post['slug'] ==  slug)
+        return render(request, "blog/details.html", {
+            "post": identified_post
+        })
     except:
         raise Http404()
     
