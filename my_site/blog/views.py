@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from datetime import date
 
@@ -10,11 +10,6 @@ from . models import Post
 # 4. Include App.urls file on Project.urls file
 # 5. Add app to installed apps on Project settings.py
 # 6. Add BASE_DIR to settings file to pick up global templates
-
-
-all_posts = [
-
-]
 
 
 def index(request):
@@ -29,6 +24,7 @@ def index(request):
 
 def posts(request):
     try:
+        all_posts = Post.objects.all().order_by("-date")
         return render(request, "blog/posts.html",{
             "posts": all_posts})
     except:
@@ -37,7 +33,8 @@ def posts(request):
 
 def detail_post(request, slug):
     try:
-        identified_post = next(post for post in all_posts if post['slug'] ==  slug)
+        # identified_post = get_object_or_404(Post, slug=slug)
+        identified_post = Post.objects.get(slug=slug)
         return render(request, "blog/details.html", {
             "post": identified_post
         })
