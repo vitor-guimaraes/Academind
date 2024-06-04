@@ -36,7 +36,8 @@ def detail_post(request, slug):
         # identified_post = get_object_or_404(Post, slug=slug)
         identified_post = Post.objects.get(slug=slug)
         return render(request, "blog/details.html", {
-            "post": identified_post
+            "post": identified_post,
+            "post_tags": identified_post.tags.all()
         })
     except:
         raise Http404()
